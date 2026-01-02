@@ -1,48 +1,48 @@
-# HyperTracker Clone
+# HyperTracker Clone (日本語版)
 
-A mirror trading support tool and wallet tracker for Hyperliquid, inspired by CoinMarketMan's HyperTracker.
+CoinMarketManのHyperTrackerにインスパイアされた、Hyperliquidのミラートレード支援・ウォレット監視ツールです。
 
-## Features
+## 機能
 
-- **Real-time Dashboard**: Monitor account value, margin usage, and open positions.
-- **Position Tracking**: View detailed metrics for each position (Size, Entry Price, PnL, Leverage).
-- **Discord Notifications**: Background monitoring system that alerts you on:
-  - New positions opened.
-  - Positions closed.
-  - Position size increased or decreased.
-- **HIP-3 Support**: Automatically displays any asset returned by the Hyperliquid API, including new HIP-3 assets.
+- **リアルタイムダッシュボード**: 口座資産、使用証拠金、保有ポジションを監視します。
+- **ポジション追跡**: 各ポジションの詳細（サイズ、取得単価、損益、レバレッジ）を表示します。
+- **Discord通知**: バックグラウンド監視システムにより、以下のイベントを通知します：
+  - 新規ポジション構築
+  - ポジション決済
+  - ポジションサイズの増減
+- **HIP-3 対応**: APIから返されるすべての資産（HIP-3トークン含む）を自動的に表示します。
 
-## Project Structure
+## プロジェクト構成
 
-- `backend/`: Python FastAPI application for data fetching and monitoring.
-- `frontend/`: Next.js application for the user interface.
+- `backend/`: Python FastAPI アプリケーション（データ取得・監視用）
+- `frontend/`: Next.js アプリケーション（ユーザーインターフェース）
 
-## Prerequisites
+## 前提条件
 
-- Python 3.9+
-- Node.js 18+
-- A Discord Webhook URL (for notifications)
+- Python 3.9以上
+- Node.js 18以上
+- Discord Webhook URL（通知用）
 
-## Setup & Running
+## セットアップと実行
 
-### 1. Backend
+### 1. バックエンド (Backend)
 
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+source venv/bin/activate  # Windowsの場合: venv\Scripts\activate
 pip install -r requirements.txt
 
-# Create .env file for Discord Webhook (Optional)
+# .env ファイルを作成して Discord Webhook を設定 (任意)
 echo "DISCORD_WEBHOOK_URL=your_webhook_url_here" > .env
 
-# Run the server
+# サーバー起動
 uvicorn main:app --reload
 ```
 
-The backend API will be available at `http://localhost:8000`.
+APIサーバーは `http://localhost:8000` で起動します。
 
-### 2. Frontend
+### 2. フロントエンド (Frontend)
 
 ```bash
 cd frontend
@@ -50,16 +50,16 @@ npm install
 npm run dev
 ```
 
-The frontend will be available at `http://localhost:3000`.
+フロントエンドは `http://localhost:3000` でアクセスできます。
 
-## Usage
+## 使い方
 
-1. Open `http://localhost:3000`.
-2. The default wallet is pre-filled. You can change it to track any Hyperliquid address.
-3. Click **Refresh** to update data manually (it also auto-refreshes every 10 seconds).
-4. Click **Start Monitor** to enable background tracking. If the wallet makes a trade, the backend will detect the change and send a Discord notification (if configured).
+1. `http://localhost:3000` をブラウザで開きます。
+2. デフォルトで特定のウォレットが表示されています。入力欄から任意のHyperliquidアドレスに変更して追跡できます。
+3. **更新 (Refresh)** ボタンをクリックすると手動でデータを更新できます（10秒ごとの自動更新もあり）。
+4. **監視開始 (Start Monitor)** ボタンをクリックするとバックグラウンド監視を開始します。対象ウォレットに動きがあるとDiscordに通知が飛びます。
 
-## Tech Stack
+## 技術スタック
 
 - **Frontend**: Next.js, Tailwind CSS, TypeScript
 - **Backend**: Python, FastAPI, Requests

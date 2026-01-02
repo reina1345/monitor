@@ -25,25 +25,25 @@ export default function PositionsTable({ positions }: PositionsTableProps) {
   return (
     <div className="bg-gray-800 rounded-lg shadow-md overflow-hidden">
         <div className="p-4 border-b border-gray-700">
-            <h3 className="text-xl font-bold text-white">Open Positions</h3>
+            <h3 className="text-xl font-bold text-white">保有ポジション一覧</h3>
         </div>
       <div className="overflow-x-auto">
         <table className="w-full text-left text-sm text-gray-300">
           <thead className="bg-gray-700 text-xs uppercase text-gray-400">
             <tr>
-              <th className="px-6 py-3">Coin</th>
-              <th className="px-6 py-3">Side</th>
-              <th className="px-6 py-3">Size</th>
-              <th className="px-6 py-3">Entry Price</th>
-              <th className="px-6 py-3">Value</th>
-              <th className="px-6 py-3">PnL</th>
-              <th className="px-6 py-3">Leverage</th>
+              <th className="px-6 py-3">通貨</th>
+              <th className="px-6 py-3">売買</th>
+              <th className="px-6 py-3">サイズ</th>
+              <th className="px-6 py-3">取得単価</th>
+              <th className="px-6 py-3">評価額</th>
+              <th className="px-6 py-3">損益</th>
+              <th className="px-6 py-3">レバレッジ</th>
             </tr>
           </thead>
           <tbody>
             {positions.length === 0 ? (
                 <tr>
-                    <td colSpan={7} className="px-6 py-4 text-center">No open positions</td>
+                    <td colSpan={7} className="px-6 py-4 text-center">保有ポジションはありません</td>
                 </tr>
             ) : positions.map((pos) => {
               const size = parseFloat(pos.szi);

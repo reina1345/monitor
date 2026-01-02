@@ -17,15 +17,15 @@ export default function WalletSummary({ accountValue, totalPnl, marginUsed }: Wa
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
       <div className="bg-gray-800 p-4 rounded-lg shadow-md">
-        <h3 className="text-gray-400 text-sm">Account Value</h3>
+        <h3 className="text-gray-400 text-sm">口座残高 (Account Value)</h3>
         <p className="text-2xl font-bold text-white">{formatMoney(accountValue)}</p>
       </div>
       <div className="bg-gray-800 p-4 rounded-lg shadow-md">
-        <h3 className="text-gray-400 text-sm">Unrealized PnL (Total)</h3>
+        <h3 className="text-gray-400 text-sm">含み損益 (Total PnL)</h3>
         <p className={`text-2xl font-bold ${pnlColor}`}>{formatMoney(totalPnl)}</p>
       </div>
       <div className="bg-gray-800 p-4 rounded-lg shadow-md">
-        <h3 className="text-gray-400 text-sm">Margin Used</h3>
+        <h3 className="text-gray-400 text-sm">使用証拠金 (Margin Used)</h3>
         <p className="text-2xl font-bold text-white">{formatMoney(marginUsed)}</p>
       </div>
     </div>

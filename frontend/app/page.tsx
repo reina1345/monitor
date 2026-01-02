@@ -42,11 +42,6 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [address]);
 
-  // Calculate total PnL from positions if not provided in summary (or use marginSummary)
-  // The API returns assetPositions which has unrealizedPnl for each.
-  // We can sum them up or check if crossMarginSummary has it.
-  // Based on curl output: marginSummary doesn't have total Unrealized PnL directly, but assetPositions do.
-
   const totalPnl = data?.assetPositions?.reduce((acc: number, pos: any) => acc + parseFloat(pos.position.unrealizedPnl), 0).toString() || "0";
 
   return (
@@ -54,7 +49,7 @@ export default function Home() {
       <header className="mb-8 flex flex-col md:flex-row justify-between items-center">
         <div>
             <h1 className="text-3xl font-bold text-blue-400">HyperTracker Clone</h1>
-            <p className="text-gray-400 mt-2">Mirror Trading & Wallet Watcher</p>
+            <p className="text-gray-400 mt-2">ミラートレード支援 & ウォレット監視ツール</p>
         </div>
         <div className="mt-4 md:mt-0 flex gap-2">
             <input
@@ -62,24 +57,24 @@ export default function Home() {
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 className="bg-gray-800 border border-gray-700 rounded px-4 py-2 w-64 md:w-96 focus:outline-none focus:border-blue-500"
-                placeholder="Enter Wallet Address"
+                placeholder="ウォレットアドレスを入力"
             />
              <button
                 onClick={fetchData}
                 className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition"
             >
-                Refresh
+                更新 (Refresh)
             </button>
             <button
                 onClick={toggleMonitor}
                 className={`${monitoring ? 'bg-red-600 hover:bg-red-700' : 'bg-green-600 hover:bg-green-700'} text-white font-bold py-2 px-4 rounded transition`}
             >
-                {monitoring ? "Stop Monitor" : "Start Monitor"}
+                {monitoring ? "監視停止 (Stop)" : "監視開始 (Start)"}
             </button>
         </div>
       </header>
 
-      {loading && !data && <p className="text-center text-gray-500">Loading wallet data...</p>}
+      {loading && !data && <p className="text-center text-gray-500">データを読み込み中...</p>}
 
       {data && (
         <main>

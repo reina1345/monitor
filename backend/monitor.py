@@ -57,7 +57,7 @@ class WalletMonitor:
         for coin, old_pos in self.last_positions.items():
             if coin not in current_positions:
                 # Position completely disappeared (closed)
-                self.notify_close(coin, old_pos, 0, alert) # Assuming 0 exit price if unknown, or handled logic
+                self.notify_close(coin, old_pos, 0, alert)
             elif float(current_positions[coin]['szi']) == 0 and float(old_pos['szi']) != 0:
                  self.notify_close(coin, old_pos, 0, alert)
 
@@ -71,24 +71,16 @@ class WalletMonitor:
         if old_size == new_size:
             return
 
-        # Simple logic: increase or decrease
-        # Note: Short sizes are negative. Long are positive.
-
-        diff = new_size - old_size
-
-        # Determine direction
-        is_long = new_size > 0
-
         msg = ""
         if (old_size > 0 and new_size > old_size) or (old_size < 0 and new_size < old_size):
-             msg = f"📈 INCREASED {coin} Position. New Size: {new_size}"
+             msg = f"📈 積増 {coin} ポジション\n新サイズ: {new_size}"
         elif (old_size > 0 and new_size < old_size) or (old_size < 0 and new_size > old_size):
              # Partial close or flip
              if new_size == 0:
                  self.notify_close(coin, old_pos, 0, alert)
                  return
              else:
-                 msg = f"📉 DECREASED {coin} Position. New Size: {new_size}"
+                 msg = f"📉 縮小 {coin} ポジション\n新サイズ: {new_size}"
 
         if msg and alert:
              send_discord_alert(self.webhook_url, msg)
@@ -97,14 +89,14 @@ class WalletMonitor:
         if not alert: return
         size = pos['szi']
         entry = pos['entryPx']
-        side = "LONG" if float(size) > 0 else "SHORT"
-        msg = f"🚀 OPEN {side} {coin} \nSize: {size}\nEntry: {entry}"
+        side = "買い(LONG)" if float(size) > 0 else "売り(SHORT)"
+        msg = f"🚀 新規 {side} {coin} \nサイズ: {size}\n取得価格: {entry}"
         send_discord_alert(self.webhook_url, msg)
 
     def notify_close(self, coin, pos, exit_px, alert):
         if not alert: return
         size = pos['szi']
         entry = pos['entryPx']
-        side = "LONG" if float(size) > 0 else "SHORT"
-        msg = f"💰 CLOSE {side} {coin}\nSize: {size}\nEntry: {entry}"
+        side = "買い(LONG)" if float(size) > 0 else "売り(SHORT)"
+        msg = f"💰 決済 {side} {coin}\nサイズ: {size}\n取得価格: {entry}"
         send_discord_alert(self.webhook_url, msg)
