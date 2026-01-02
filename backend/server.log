@@ -1,0 +1,8 @@
+INFO:     Started server process [2720]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:35474 - "GET /api/wallet/0x5b5d51203a0f9079f8aeb098a6523a13f298c060 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:44750 - "POST /api/monitor/0x5b5d51203a0f9079f8aeb098a6523a13f298c060 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45216 - "GET /api/wallet/0x5b5d51203a0f9079f8aeb098a6523a13f298c060 HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48326 - "GET /api/wallet/0x5b5d51203a0f9079f8aeb098a6523a13f298c060 HTTP/1.1" 200 OK
